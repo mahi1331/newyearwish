@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For My Love ❤️</title>
+
+<style>
+/* ===== GLOBAL ===== */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #1b0000, #000);
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+
+    /* ✅ PROPER CENTERING */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== CENTER CARD ===== */
+.card {
+    position: relative;
+    z-index: 5;
+    padding: 60px 50px;
+    text-align: center;
+    background: rgba(0,0,0,0.65);
+    border-radius: 30px;
+    box-shadow: 0 30px 90px rgba(255, 80, 120, 0.5);
+
+    /* floating animation */
+    animation: floatCard 4s ease-in-out infinite;
+}
+
+@keyframes floatCard {
+    0%,100% { transform: translateY(0); }
+    50%     { transform: translateY(-18px); }
+}
+
+.card h1 {
+    font-size: 38px;
+    color: #ffb3c6;
+    margin-bottom: 15px;
+    text-shadow: 0 0 20px #ffb3c6;
+}
+
+.card p {
+    font-size: 18px;
+    color: #ffffff;
+    margin-bottom: 35px;
+    line-height: 1.5;
+}
+
+.card a {
+    display: inline-block;
+    padding: 16px 40px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #000;
+    background: linear-gradient(45deg, #ff4d6d, #ffd166);
+    border-radius: 50px;
+    text-decoration: none;
+    box-shadow: 0 0 30px rgba(255, 120, 160, 0.9);
+    transition: all 0.35s ease;
+}
+
+.card a:hover {
+    transform: scale(1.12);
+    box-shadow: 0 0 60px rgba(255, 120, 160, 1);
+}
+
+/* ===== FLOATING BACKGROUND ===== */
+.float {
+    position: absolute;
+    bottom: -10%;
+    opacity: 0.85;
+    animation: floatUp linear infinite;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0) scale(0.7);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-140vh) scale(1.6);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== CENTER CONTENT ===== -->
+<div class="card">
+    <h1>❤️ My Love ❤️</h1>
+    <p>
+        I made something special<br>
+        just for you 🌹
+    </p>
+    <a href="surprise.html">Click Here for Surprise ✨</a>
+</div>
+
+<!-- ===== HEARTS & ROSES BACKGROUND ===== -->
+<script>
+const symbols = ["🌹","❤️","💖","💘","🌹","💞","💕","🌹"];
+const total = 100;
+
+for (let i = 0; i < total; i++) {
+    const el = document.createElement("div");
+    el.className = "float";
+    el.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.fontSize = (14 + Math.random() * 24) + "px";
+    el.style.animationDuration = (6 + Math.random() * 8) + "s";
+    el.style.animationDelay = Math.random() * 10 + "s";
+
+    document.body.appendChild(el);
+}
+</script>
+
+</body>
+</html>
