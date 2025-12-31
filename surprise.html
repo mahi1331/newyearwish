@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy New Year My Wifey ❤️</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    background: radial-gradient(circle at top, #2b0000, #000);
+    font-family: 'Segoe UI', sans-serif;
+    overflow: hidden;
+    perspective: 2400px;
+}
+
+/* ===== ROTATING CONTAINER ===== */
+.scene {
+    position: relative;
+    margin-top: 120px;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    transform-style: preserve-3d;
+    animation: rotateScene 10s linear infinite;
+    animation-play-state: running;
+    z-index: 5;
+}
+
+@keyframes rotateScene {
+    from { transform: rotateY(0deg); }
+    to   { transform: rotateY(360deg); }
+}
+
+/* ===== FACE ===== */
+.face {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    transform-style: preserve-3d;
+    backface-visibility: hidden;   /* 🔑 KEY */
+}
+
+/* front face */
+.face.front {
+    transform: translateZ(120px);
+}
+
+/* back face */
+.face.back {
+    transform: rotateY(180deg) translateZ(120px);
+}
+
+/* ===== 3D BLOCK TEXT ===== */
+.block {
+    font-weight: 900;
+    letter-spacing: 6px;
+    color: #ff4d6d;
+    margin: 6px 0;
+    text-shadow:
+        1px 1px 0 #c9184a,
+        2px 2px 0 #a4133c,
+        3px 3px 0 #800f2f,
+        4px 4px 0 #590d22,
+        6px 6px 18px rgba(0,0,0,0.9);
+    transform: translateZ(40px);
+    animation: pulse3D 3.2s ease-in-out infinite;
+    backface-visibility: hidden;   /* 🔑 EXTRA SAFETY */
+}
+
+@keyframes pulse3D {
+    0%,100% { transform: translateZ(40px) scale(1); }
+    50%     { transform: translateZ(70px) scale(1.06); }
+}
+
+.block.main {
+    font-size: clamp(56px, 8vw, 90px);
+}
+
+.block.year {
+    font-size: clamp(96px, 12vw, 140px);
+}
+
+/* ===== NAME & MESSAGE ===== */
+.name {
+    margin-top: 30px;
+    font-size: clamp(32px, 4vw, 42px);
+    color: #ffffff;
+    text-shadow: 0 0 20px #ffffff;
+}
+
+.nickname {
+    margin-top: 8px;
+    font-size: clamp(22px, 3vw, 30px);
+    color: #ffb3c6;
+    text-shadow: 0 0 15px #ffb3c6;
+}
+
+.message {
+    margin-top: 24px;
+    font-size: clamp(20px, 3vw, 26px);
+    line-height: 1.5;
+    color: #ffd6e0;
+    text-shadow: 0 0 15px #ffd6e0;
+}
+
+/* ===== FLOATING BACKGROUND ===== */
+.float {
+    position: absolute;
+    bottom: -10%;
+    opacity: 0.85;
+    animation: floatUp linear infinite;
+    z-index: 1;
+    pointer-events: none;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0) scale(0.7);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-150vh) scale(1.6);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== ROTATING SCENE ===== -->
+<div class="scene">
+
+    <!-- FRONT -->
+    <div class="face front">
+        <div class="block main">HAPPY NEW YEAR</div>
+        <div class="block year">2026</div>
+        <div class="name">❤️ BHUMI ❤️</div>
+        <div class="nickname">My Wifey 💍</div>
+        <div class="message">
+            Every year feels magical<br>
+            because I have you.<br>
+            May 2026 bless us with<br>
+            endless love & a lifetime together 🌹
+        </div>
+    </div>
+
+    <!-- BACK (SAME CONTENT) -->
+    <div class="face back">
+        <div class="block main">HAPPY NEW YEAR</div>
+        <div class="block year">2026</div>
+        <div class="name">❤️ BHUMI ❤️</div>
+        <div class="nickname">My Wifey 💍</div>
+        <div class="message">
+            Every year feels magical<br>
+            because I have you.<br>
+            May 2026 bless us with<br>
+            endless love & a lifetime together 🌹
+        </div>
+    </div>
+
+</div>
+
+<!-- ===== HEARTS & ROSES ===== -->
+<script>
+const symbols = ["❤️","💖","💘","💞","💕","🌹","🌸"];
+for (let i = 0; i < 120; i++) {
+    const el = document.createElement("div");
+    el.className = "float";
+    el.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+    el.style.left = Math.random() * 100 + "vw";
+    el.style.fontSize = (14 + Math.random() * 26) + "px";
+    el.style.animationDuration = (5 + Math.random() * 7) + "s";
+    el.style.animationDelay = Math.random() * 8 + "s";
+    document.body.appendChild(el);
+}
+</script>
+
+<!-- ===== PAUSE ON TOUCH ===== -->
+<script>
+const scene = document.querySelector(".scene");
+
+scene.addEventListener("mousedown", () => scene.style.animationPlayState = "paused");
+scene.addEventListener("touchstart", () => scene.style.animationPlayState = "paused");
+
+scene.addEventListener("mouseup", () => scene.style.animationPlayState = "running");
+scene.addEventListener("mouseleave", () => scene.style.animationPlayState = "running");
+scene.addEventListener("touchend", () => scene.style.animationPlayState = "running");
+</script>
+
+</body>
+</html>
