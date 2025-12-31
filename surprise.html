@@ -24,14 +24,9 @@ body {
     position: relative;
     text-align: center;
     transform-style: preserve-3d;
-
-    /* ⬇️ REAL DOWNWARD SHIFT */
-    margin-top: 200px;
-
-    /* ⚡ FAST ROTATION */
+    margin-top: 120px;                /* ⬇️ shifted downward */
     animation: rotateScene 16s linear infinite;
-
-    transform-origin: center center;
+    animation-play-state: running;    /* default running */
     z-index: 5;
 }
 
@@ -133,7 +128,7 @@ body {
     </div>
 </div>
 
-<!-- ===== HEARTS & ROSES SCRIPT ===== -->
+<!-- ===== HEARTS & ROSES BACKGROUND ===== -->
 <script>
 const symbols = ["❤️","💖","💘","💞","💕","🌹","🌸"];
 const total = 120;
@@ -150,6 +145,30 @@ for (let i = 0; i < total; i++) {
 
     document.body.appendChild(el);
 }
+</script>
+
+<!-- ===== PAUSE ON TOUCH / HOLD SCRIPT ===== -->
+<script>
+const scene = document.querySelector(".scene");
+
+/* Pause on hold */
+scene.addEventListener("mousedown", () => {
+    scene.style.animationPlayState = "paused";
+});
+scene.addEventListener("touchstart", () => {
+    scene.style.animationPlayState = "paused";
+});
+
+/* Resume on release */
+scene.addEventListener("mouseup", () => {
+    scene.style.animationPlayState = "running";
+});
+scene.addEventListener("mouseleave", () => {
+    scene.style.animationPlayState = "running";
+});
+scene.addEventListener("touchend", () => {
+    scene.style.animationPlayState = "running";
+});
 </script>
 
 </body>
